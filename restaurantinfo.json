@@ -1,0 +1,110 @@
+{
+	"naverBookingUrl": null,
+	"telDisplay": "031-997-6993",
+	"type": "s",
+	"homePage": "",
+	"abbrAddress": "신곡리 447-75",
+	"ktCallMd": "1e28d7fd80478a7eed185f4ac339b115",
+	"indoorMapInfo": null,
+	"posExact": "1",
+	"hasNPay": false,
+	"poiInfo": {
+		"hasPolygon": false,
+		"hasRoad": false,
+		"hasLand": false,
+		"polygon": null,
+		"road": {
+			"shapeKey": null,
+			"boundary": null,
+			"detail": null,
+			"poiShapeType": "1"
+		},
+		"land": null
+	},
+	"shopWindowInfo": null,
+	"rank": "1",
+	"naverEasyOrderUrl": null,
+	"tel": "031-997-6993",
+	"entranceCoords": {
+		"car": [
+			{
+				"coordType": "5",
+				"entranceCoordY": "37.6075420",
+				"entranceCoordX": "126.7670540",
+				"coordSubType": 1,
+				"isRepresentative": "1"
+			}
+		],
+		"walk": [
+			{
+				"coordType": "5",
+				"entranceCoordY": "37.6075420",
+				"entranceCoordX": "126.7670540",
+				"coordSubType": 1,
+				"isRepresentative": "1"
+			}
+		]
+	},
+	"id": "s33169366",
+	"broadcastInfo": {
+		"name": null,
+		"menu": null
+	},
+	"insidePanorama": null,
+	"hasBroadcastInfo": false,
+	"virtualTel": "",
+	"index": "0",
+	"couponUrl": null,
+	"isCallLink": false,
+	"thumUrl": "http:\/\/blogfiles.naver.net\/20160705_72\/balloonjoo_1467706696106oCtJK_JPEG\/image_9828304361467706576936.jpg#3000x2252",
+	"indoorPanorama": null,
+	"petrolInfo": null,
+	"name": "시골향기",
+	"isSite": "1",
+	"indoor": {
+		"underGmid": "0",
+		"floor": "0",
+		"underMid": "0"
+	},
+	"x1": null,
+	"x2": null,
+	"distance": "19169.64",
+	"description": "",
+	"menuExist": "1",
+	"couponUrlMobile": null,
+	"isPollingPlace": false,
+	"menuInfo": null,
+	"roadAddress": "경기도 김포시 고촌읍 신곡로 114-8",
+	"theme": null,
+	"skyPanorama": {
+		"lng": "126.7681351",
+		"id": "77YNvQ07FmgfZaFI9IaNLQ==",
+		"tilt": "-30.00",
+		"pan": "-18.09",
+		"fov": "124",
+		"lat": "37.6049995"
+	},
+	"ppc": "1",
+	"address": "경기도 김포시 고촌읍 신곡리 447-75",
+	"bizhourInfo": null,
+	"coupon": "0",
+	"display": "<b>시골향기<\/b>",
+	"hasNaverBooking": false,
+	"streetPanorama": {
+		"lng": "126.7673697",
+		"id": "fg++Fj4DOHh224xgJ03zXQ==",
+		"tilt": "12.38",
+		"pan": "-16.34",
+		"fov": "50",
+		"lat": "37.6072502"
+	},
+	"interiorPanorama": null,
+	"hasCardBenefit": false,
+	"x": "126.7672751",
+	"y": "37.6076334",
+	"category": [
+		"음식점",
+		"한식"
+	],
+	"itemLevel": "12"
+}

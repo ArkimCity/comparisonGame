@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<title>World of Words</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('http://jaeung.kim/wp-content/uploads/2020/10/KakaoTalk_20201025_184143003.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+</style>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-topleft w3-padding-large w3-xlarge">
+    WordlOfWords
+  </div>
+  <div class="w3-display-middle">
+    <form action="worldofwords?command=getWordList" method="post">
+    <input type="submit" class="w3-large w3-animate-top" value="FIND OUT"></input>
+    <h1 class="w3-middle w3-animate-top">YOUR</h1>
+    <input type="text" name="inputnumber" value="10"/><br>
+    <h1 class="w3-middle w3-animate-top">WORDS</h1>
+    <h1 class="w3-middle w3-animate-top">OF THE DAY!</h1>
+    <hr class="w3-border-grey" style="margin:auto;width:40%">
+    <input type="hidden" name="userwordscommand" value="getUserWords">
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
+
+	<!-- <p>
+		&nbsp;&nbsp;&nbsp;<a href="probono?command=probonoProjectAll">1. 진행중인 Probono Project 모두 검색</a>
+	<p>
+		&nbsp;&nbsp;&nbsp;<a href="probono?command=activistAll">2. 재능 기부 프로젝트에 참여중인 기부자 모두 검색</a>
+	<p>
+		&nbsp;&nbsp;&nbsp;<a href="activistInsert.html">3. 재능 기부자 가입하기</a>
+	<p>
+	
+	<form action="probono?command=activist" method="post">
+		&nbsp;&nbsp;&nbsp; 4. 기부자 ID : 
+		<input type="text" name="activistId">
+		<input type="submit" value="검색">
+	</form>
+	<p>
+	<hr> -->

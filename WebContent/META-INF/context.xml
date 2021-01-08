@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<!-- oracle DB 용어 -->
+	<Resource name="jdbc/playdata" auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+              username="SCOTT" password="TIGER"
+              maxTotal="20" maxIdle="10"
+              maxWaitMillis="-1"/>
+</Context>
