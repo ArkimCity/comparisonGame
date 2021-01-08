@@ -92,13 +92,7 @@ h2 {
 		filter: blur(2px);
 	}
 }
-Resources1×0
 
-
-.5×0
-
-
-.25×Rerun
 </style>
 <!-- Navigation Bar -->
 <div style="position: relative; z-index: 2;">
