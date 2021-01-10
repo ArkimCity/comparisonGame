@@ -65,8 +65,14 @@ public class WorldOfWordsController extends HttpServlet {
 
 	private void foodWorldCup(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String url = "showError.jsp";
+		String address = null;
 		String searchKeyWords = request.getParameter("searchKeyWords");
-		String address = JsoupCrawlNaverRestaurants.googleAddressFinder(Double.valueOf(request.getParameter("lattitude")),Double.valueOf(request.getParameter("longtitude")));
+		System.out.println(request.getParameter("lattitude")); 
+		if (request.getParameter("lattitude").equals("")) {
+			address = "";
+		}else {
+			address = JsoupCrawlNaverRestaurants.googleAddressFinder(Double.valueOf(request.getParameter("lattitude")),Double.valueOf(request.getParameter("longtitude")));
+		}
 		ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
 		try {
 			results = JsoupCrawlNaverRestaurants.crawler(searchKeyWords, address);

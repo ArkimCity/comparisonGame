@@ -61,7 +61,14 @@
             <div class="image-container" style="min-height: 100vh;">
                 <article class="location-listing" style="min-height: 100vh;">
                     <a class="location-title" onclick="startChoice()" href="#" style="min-height: 100vh;">
-                    	${sessionScope.address} 근처에서<br><br>
+                    	<%
+                    		if (session.getAttribute("address").toString().equals("")){
+                    			out.print("위치는 알려주시지 않았지만ㅜ");
+                    		}else{
+                    			out.print("${sessionScope.address} 근처에서");
+                    		}
+                    	%>
+                    	<br><br>
                     	${requestScope.searchKeyWords} 를 검색하셨군요!<br><br>
                     	게임 시작!!</a>
                     <div class="location-image" style="min-height: 100vh;">
