@@ -15,15 +15,7 @@
 </head>
 <script>
 	const foods = JSON.parse(`${requestScope.restaurants}`);
-	/*
-    const foods = [
-        {"food": "한식", "imageSource": `<img id="bg" src="https://res.heraldm.com/phpwas/restmb_idxmake.php?idx=507&simg=/content/image/2019/07/01/20190701000670_0.jpg" style="min-height: 50vh;">` },
-        {"food": "양식", "imageSource": `<img id="bg" src="https://cdn.r-corona.jp/prd.jln.r-corona.jp/assets/site_files/3x9cf5gc/632160/ecav_bw760h570.jpg" style="min-height: 50vh;">` },
-        {"food": "중식", "imageSource": `<img id="bg" src="https://blog.kakaocdn.net/dn/cQadDg/btqIZmNixWI/kkef5cKMY4YiWIDBcsX7IK/img.png" style="min-height: 50vh;">` },
-        {"food": "일식", "imageSource": `<img id="bg" src="https://media.istockphoto.com/photos/serving-sushi-rolls-and-other-traditional-japanese-and-asian-food-on-picture-id1136188508" style="min-height: 50vh;">` }
-    ]
-	*/
-    
+
     let tempfoods;
 
     function startChoice() {
@@ -39,7 +31,9 @@
             let tempIndex = parseInt(Math.random()*(tempfoods.length));
             let temp = tempfoods[tempIndex];
             document.getElementById("imageSourceLeft").src = temp.thumUrl;
-            document.getElementById("leftTitle").innerText = temp.name;
+            document.getElementById("leftTitle").innerHTML = temp.name + "<br><br>";
+            document.getElementById("leftTitle").innerHTML += temp.category + "<br><br>";
+            document.getElementById("leftTitle").innerHTML += temp.roadAddress;
             tempfoods.splice(tempIndex, 1);
         } else {
             document.getElementById("comparison").innerHTML = document.getElementById("imageRight").innerHTML + "우승은 " + document.getElementById("rightTitle").innerHTML + "!!";
@@ -51,7 +45,9 @@
             let tempIndex = parseInt(Math.random() * (tempfoods.length));
             let temp = tempfoods[tempIndex];
             document.getElementById("imageSourceRight").src = temp.thumUrl;
-            document.getElementById("rightTitle").innerText = temp.name;
+            document.getElementById("rightTitle").innerHTML = temp.name + "<br><br>";
+            document.getElementById("rightTitle").innerHTML += temp.category + "<br><br>";
+            document.getElementById("rightTitle").innerHTML += temp.roadAddress;
             tempfoods.splice(tempIndex, 1);
         } else {
             document.getElementById("comparison").innerHTML = document.getElementById("imageLeft").innerHTML + "우승은 " + document.getElementById("leftTitle").innerHTML + "!!";
@@ -60,8 +56,17 @@
 
 </script>
 <body style="background-color:#000000;">
-    <div id="start">
-        <button onclick="startChoice()">게임 시작</button>
+    <div id="start" style="min-height: 100vh;">
+        <div style="min-height: 100vh;">
+            <div class="image-container" style="min-height: 100vh;">
+                <article class="location-listing" style="min-height: 100vh;">
+                    <a class="location-title" onclick="startChoice()" href="#" style="min-height: 100vh;">게임 시작</a>
+                    <div class="location-image" style="min-height: 100vh;">
+                    	<img src="https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2017/08/18173246/FullSizeRender4.jpg" style="min-height: 100vh;">
+                    </div>
+                </article>
+            </div>
+        </div>
     </div>
     <div id="comparison" style="display: none; color: aliceblue;">
         <div>

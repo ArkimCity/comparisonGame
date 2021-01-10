@@ -48,7 +48,7 @@ public class Crawler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		log.warn("국어사전 API 실행 기록");
 		return resultlist;
 	}
 
@@ -60,18 +60,16 @@ public class Crawler {
 		
 		String encoded = URLEncoder.encode(input,"utf-8"); //﻿※
 		url = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query="+encoded;
-		System.out.println(url);		
 		
 		doc = Jsoup.connect(url).execute().parse();
 		
 		Elements relatedwords = doc.select("div.tit");
 		
-		System.out.println(relatedwords.size());
 		
 		for(Element e : relatedwords) {
 			resultList.add(StringUtils.substringBetween(e.toString(), "tit\">", "<"));
 		}
-		
+		log.warn("relatedNaverCrawler 실행 기록");
 		return resultList;
 	}
 	
@@ -94,7 +92,7 @@ public class Crawler {
 		for(Element e : relatedwords) {
 			resultList.add(StringUtils.substringBetween(StringUtils.substringBetween(e.toString(), "\">", "</p>"), "\">", "</a>"));
 		}
-		log.warn("relatedNaverCrawler 실행 기록");
+		log.warn("relatedGoogleCrawler 실행 기록");
 		return resultList;
 	}
 	
@@ -116,6 +114,7 @@ public class Crawler {
 		for(Element e : images) {
 			HashMap<String, String> minimap = new HashMap<String, String>();
 			minimap.put("title", StringUtils.substringBetween(e.toString(), "alt=\"", "\""));
+			minimap.put("forFoodsSource", StringUtils.substringBetween(e.toString(), "src=\"", "\""));
 			minimap.put("source", e.toString().replace("data-src", "src"));
 			resultList.add(minimap);
 		}

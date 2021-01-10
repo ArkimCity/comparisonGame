@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import probono.model.LoginService;
 import probono.model.Crawler;
+import probono.model.JsoupCrawlNaverRestaurants;
 import probono.model.WorldOfWordsCRUDService;
 import probono.model.dto.UserEntity;
-import test.JsoupCrawlNaverStart;
 
 @Slf4j
 
@@ -65,9 +65,10 @@ public class WorldOfWordsController extends HttpServlet {
 
 	private void foodWorldCup(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "showError.jsp";
+		String searchKeyWords = request.getParameter("searchKeyWords");
 		ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
 		try {
-			results = JsoupCrawlNaverStart.crawler("양식", 37.600757, 126.766535);
+			results = JsoupCrawlNaverRestaurants.crawler(searchKeyWords, 37.600757, 126.766535);
 			request.setAttribute("restaurants", results.toString().replace("=",":"));
 			url = "worldCup.jsp";
 		} catch (Exception e) {

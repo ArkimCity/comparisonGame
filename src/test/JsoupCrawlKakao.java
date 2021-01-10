@@ -11,9 +11,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import probono.model.JsoupCrawlNaverRestaurants;
+
 public class JsoupCrawlKakao {
-	public static void main(String[] args) {
-		HashMap<String, String> map = JsoupCrawlNaverStart.crawler("시골향기", 37.6005423, 126.7663571).get(0);
+	public static void main(String[] args) throws IOException {
+		HashMap<String, String> map = JsoupCrawlNaverRestaurants.crawler("시골향기", 37.6005423, 126.7663571).get(0);
 		System.out.println(crawler(map.get("name"), map.get("roadAddress")));
 		System.out.println(JsoupCrawlMangoPlate.crawler(map.get("name"), map.get("roadAddress")));
 	}

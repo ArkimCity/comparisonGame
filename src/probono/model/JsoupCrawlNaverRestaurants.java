@@ -1,4 +1,4 @@
-package test;
+package probono.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 
-public class JsoupCrawlNaverStart {
+public class JsoupCrawlNaverRestaurants {
 	public static JSONObject jsonParser(String content) {
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObject = null;
@@ -30,13 +30,14 @@ public class JsoupCrawlNaverStart {
 		return jsonObject;
 	}
 
-	public static ArrayList<HashMap<String, String>> crawler(String search, double lattitude, double longtitude) {
+	public static ArrayList<HashMap<String, String>> crawler(String search, double lattitude, double longtitude) throws IOException {
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		Document doc = null;
 		try {
 			//https://m.map.naver.com/search2/search.nhn?query=한식&sm=clk&centerCoord=37.6005423:126.7663571
-			doc = Jsoup.connect("https://m.map.naver.com/search2/search.nhn?query=" + search + "&sm=clk&centerCoord=" + String.valueOf(lattitude) + ":" + String.valueOf(longtitude) )
-					.timeout(10000).get();
+			String url = "https://m.map.naver.com/search2/search.nhn?query=" + search + "&sm=clk&centerCoord=" + String.valueOf(lattitude) + ":" + String.valueOf(longtitude);
+			System.out.println(url);
+			doc = Jsoup.connect(url).timeout(10000).get();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -62,6 +63,7 @@ public class JsoupCrawlNaverStart {
 		for (Object i : (ArrayList<Object>) jsonParser(jsonParser(a).get("site").toString()).get("list")) {
 			HashMap<String, String> map = new HashMap<String, String>();
 			JSONObject o = jsonParser(i.toString());
+			String thumburl = null;
 			map.put("\"id\"", "\"" + o.get("id").toString() + "\"");
 			map.put("\"name\"", "\"" + o.get("name").toString() + "\"");
 			map.put("\"abbrAddress\"", "\"" + o.get("abbrAddress").toString() + "\"");
@@ -70,9 +72,22 @@ public class JsoupCrawlNaverStart {
 			map.put("\"category\"", "\"" + o.get("category").toString().replace("\"", "").replace("[", "").replace("]", "") + "\"");
 			try {
 				map.put("\"thumUrl\"", "\"" + o.get("thumUrl").toString() + "\"");
-			} catch (Exception e) {log.warn(o.get("name").toString() + " 썸네일 없음");} //없는 경우도 다수 존재하기때문에
+			} catch (Exception e) {
+				for (HashMap<String, String> source : Crawler.googleImageCrawler(o.get("name").toString())) {
+					System.out.println(source);
+					if(source.get("forFoodsSource").startsWith("data")) {
+//					} else if(source.get("forFoodsSource").startsWith("https://encrypted")) {
+//					} else if(source.get("forFoodsSource").startsWith("http://blogfiles")) {
+					} else {
+						map.put("\"thumUrl\"", "\"" + source.get("forFoodsSource") + "\"");
+						System.out.println(source.get("forFoodsSource"));
+						break;
+					}
+				}
+				log.warn(o.get("name").toString() + " 썸네일 없음 구글에서 검색");
+			} // 썸네일이 없는 경우도 다수 존재하기때문에
 			list.add(map);
-		}
+		}//https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZJP1W1a3exma6cx4TzNEonRQVX2aGF5RO7Q&amp;usqp=CAU
 		log.warn("네이버 식당 검색 기록");
 		return list;
 	}
