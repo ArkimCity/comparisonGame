@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
 
 public class JsoupCrawlKakao {
 	public static void main(String[] args) {
-		HashMap<String, String> map = JsoupCrawlNaverStart.crawler("시골향기").get(0);
+		HashMap<String, String> map = JsoupCrawlNaverStart.crawler("시골향기", 37.6005423, 126.7663571).get(0);
 		System.out.println(crawler(map.get("name"), map.get("roadAddress")));
 		System.out.println(JsoupCrawlMangoPlate.crawler(map.get("name"), map.get("roadAddress")));
 	}

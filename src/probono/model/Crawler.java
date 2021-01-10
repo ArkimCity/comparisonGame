@@ -17,7 +17,7 @@ import org.apache.commons.lang.StringUtils;
 @Slf4j
 
 public class Crawler {
-	static String apikey = "A9CAF26B128DB44DA671FA8334A73CE9";
+	static String apikey = "A9CAF26B128DB44DA671FA8334A73CE9"; //국어대사전
 
 	public static ArrayList<HashMap<String, String>> crawler(String inputnumber) {
 		String url = "https://stdict.korean.go.kr/api/view.do?key=" + apikey + "&advanced=y&method=TARGET_CODE&q=";

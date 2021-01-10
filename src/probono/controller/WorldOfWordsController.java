@@ -17,6 +17,7 @@ import probono.model.LoginService;
 import probono.model.Crawler;
 import probono.model.WorldOfWordsCRUDService;
 import probono.model.dto.UserEntity;
+import test.JsoupCrawlNaverStart;
 
 @Slf4j
 
@@ -48,6 +49,8 @@ public class WorldOfWordsController extends HttpServlet {
 				brainStorm(request, response); 
 			}else if(command.equals("brainStormResult")){//단어리스트에 단어 보내주는 역할
 				brainStormResult(request, response); 
+			}else if(command.equals("foodWorldCup")){//음식 월드컵 모듈과 연결
+				foodWorldCup(request, response); 
 			}else {
 				request.setAttribute("errorMsg", "잘못된 명령입니다. 다시 시도해 주십시오");
 				request.getRequestDispatcher("showError.jsp").forward(request, response);
@@ -58,6 +61,20 @@ public class WorldOfWordsController extends HttpServlet {
 			request.getRequestDispatcher("showError.jsp").forward(request, response);
 			s.printStackTrace();
 		}
+	}
+
+	private void foodWorldCup(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+		ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
+		try {
+			results = JsoupCrawlNaverStart.crawler("양식", 37.600757, 126.766535);
+			request.setAttribute("restaurants", results.toString().replace("=",":"));
+			url = "worldCup.jsp";
+		} catch (Exception e) {
+			request.setAttribute("errorMsg", e.getMessage());
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	private void brainStormResult(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

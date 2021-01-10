@@ -13,13 +13,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class JsoupCrawlNaverStart {
-	public static void main(String[] args) {
-		for (Object string : crawler("시골향기")) {
-			System.out.println(string);
-		}
-	}
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
+
+public class JsoupCrawlNaverStart {
 	public static JSONObject jsonParser(String content) {
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObject = null;
@@ -32,11 +30,12 @@ public class JsoupCrawlNaverStart {
 		return jsonObject;
 	}
 
-	public static ArrayList<HashMap<String, String>> crawler(String search) {
+	public static ArrayList<HashMap<String, String>> crawler(String search, double lattitude, double longtitude) {
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		Document doc = null;
 		try {
-			doc = Jsoup.connect("https://m.map.naver.com/search2/search.nhn?query=" + search + "&sm=hty&style=v5")
+			//https://m.map.naver.com/search2/search.nhn?query=한식&sm=clk&centerCoord=37.6005423:126.7663571
+			doc = Jsoup.connect("https://m.map.naver.com/search2/search.nhn?query=" + search + "&sm=clk&centerCoord=" + String.valueOf(lattitude) + ":" + String.valueOf(longtitude) )
 					.timeout(10000).get();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -63,16 +62,18 @@ public class JsoupCrawlNaverStart {
 		for (Object i : (ArrayList<Object>) jsonParser(jsonParser(a).get("site").toString()).get("list")) {
 			HashMap<String, String> map = new HashMap<String, String>();
 			JSONObject o = jsonParser(i.toString());
-			map.put("id", o.get("id").toString());
-			map.put("name", o.get("name").toString());
-			map.put("abbrAddress", o.get("abbrAddress").toString());
-			map.put("address", o.get("address").toString());
-			map.put("roadAddress", o.get("roadAddress").toString());
-			map.put("category", o.get("category").toString());
-			
+			map.put("\"id\"", "\"" + o.get("id").toString() + "\"");
+			map.put("\"name\"", "\"" + o.get("name").toString() + "\"");
+			map.put("\"abbrAddress\"", "\"" + o.get("abbrAddress").toString() + "\"");
+			map.put("\"address\"", "\"" + o.get("address").toString() + "\"");
+			map.put("\"roadAddress\"", "\"" + o.get("roadAddress").toString() + "\"");
+			map.put("\"category\"", "\"" + o.get("category").toString().replace("\"", "").replace("[", "").replace("]", "") + "\"");
+			try {
+				map.put("\"thumUrl\"", "\"" + o.get("thumUrl").toString() + "\"");
+			} catch (Exception e) {log.warn(o.get("name").toString() + " 썸네일 없음");} //없는 경우도 다수 존재하기때문에
 			list.add(map);
 		}
-		
+		log.warn("네이버 식당 검색 기록");
 		return list;
 	}
 }
