@@ -33,13 +33,11 @@ public class JsoupCrawlNaverRestaurants {
 	}
 
 	public static String googleAddressFinder(Double lattitude, Double longtitude) {
-		//https://www.google.co.kr/maps/place/37.6044804N+126.77116689999998E/
+		log.warn("위도 : " + lattitude + ", 경도 : " + longtitude + " 확인 기록");
 		Document doc = null;
 		String address = null;
 		try {
-			//https://m.map.naver.com/search2/search.nhn?query=한식&sm=clk&centerCoord=37.6005423:126.7663571
 			String url = "https://www.google.co.kr/maps/place/" + String.valueOf(lattitude) + "N+" + String.valueOf(longtitude) + "E";
-			System.out.println(url);
 			doc = Jsoup.connect(url).timeout(10000).get();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -53,6 +51,7 @@ public class JsoupCrawlNaverRestaurants {
 			}
 		}
 		String longAddress = address.split("\"")[1];
+		log.warn(longAddress + "로 주소 변환 완료 기록");
 		return longAddress.split(" ")[1] + " " + longAddress.split(" ")[2];
 	}
 	
@@ -60,9 +59,7 @@ public class JsoupCrawlNaverRestaurants {
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		Document doc = null;
 		try {
-			//https://m.map.naver.com/search2/search.nhn?query=한식&sm=clk&centerCoord=37.6005423:126.7663571
 			String url = "https://m.map.naver.com/search2/search.nhn?&query=" + address + " " + search;
-			System.out.println(url);
 			doc = Jsoup.connect(url).timeout(10000).get();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -100,13 +97,12 @@ public class JsoupCrawlNaverRestaurants {
 				map.put("\"thumUrl\"", "\"" + o.get("thumUrl").toString() + "\"");
 			} catch (Exception e) {
 				for (HashMap<String, String> source : Crawler.googleImageCrawler(o.get("name").toString())) {
-					System.out.println(source);
 					if(source.get("forFoodsSource").startsWith("data")) {
 //					} else if(source.get("forFoodsSource").startsWith("https://encrypted")) {
 //					} else if(source.get("forFoodsSource").startsWith("http://blogfiles")) {
 					} else {
+//						System.out.println(source.get("forFoodsSource"));
 						map.put("\"thumUrl\"", "\"" + source.get("forFoodsSource") + "\"");
-						System.out.println(source.get("forFoodsSource"));
 						break;
 					}
 				}
@@ -114,7 +110,7 @@ public class JsoupCrawlNaverRestaurants {
 			} // 썸네일이 없는 경우도 다수 존재하기때문에
 			list.add(map);
 		}//https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZJP1W1a3exma6cx4TzNEonRQVX2aGF5RO7Q&amp;usqp=CAU
-		log.warn("네이버 식당 검색 기록");
+		log.warn("검색어 " + search + "(으)로 네이버 지도 검색 기록");
 		return list;
 	}
 }

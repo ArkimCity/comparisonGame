@@ -36,7 +36,9 @@
             document.getElementById("leftTitle").innerHTML += temp.roadAddress;
             tempfoods.splice(tempIndex, 1);
         } else {
-            document.getElementById("comparison").innerHTML = document.getElementById("imageRight").innerHTML + "우승은 " + document.getElementById("rightTitle").innerHTML + "!!";
+            document.getElementById("comparison").innerHTML = 
+            	document.getElementById("imageRight").innerHTML + "<center><br>우승은 " + document.getElementById("rightTitle").innerHTML + "!!"
+            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.html\">메인 화면으로 이동하기</a></center>";
         }
     }
     
@@ -50,7 +52,9 @@
             document.getElementById("rightTitle").innerHTML += temp.roadAddress;
             tempfoods.splice(tempIndex, 1);
         } else {
-            document.getElementById("comparison").innerHTML = document.getElementById("imageLeft").innerHTML + "우승은 " + document.getElementById("leftTitle").innerHTML + "!!";
+            document.getElementById("comparison").innerHTML = 
+            	document.getElementById("imageLeft").innerHTML + "<center><br>우승은 " + document.getElementById("leftTitle").innerHTML + "!!"
+            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.html\">메인 화면으로 이동하기</a></center>";;
         }
     }
 
@@ -62,14 +66,15 @@
                 <article class="location-listing" style="min-height: 100vh;">
                     <a class="location-title" onclick="startChoice()" href="#" style="min-height: 100vh;">
                     	<%
-                    		if (session.getAttribute("address").toString().equals("")){
+                    		String adress = session.getAttribute("address").toString();
+                    		if (adress.equals("")){
                     			out.print("위치는 알려주시지 않았지만ㅜ");
                     		}else{
-                    			out.print("${sessionScope.address} 근처에서");
+                    			out.print(adress + " 근처에서");
                     		}
                     	%>
                     	<br><br>
-                    	${requestScope.searchKeyWords} 를 검색하셨군요!<br><br>
+                    	${requestScope.searchKeyWords} 을/를 검색하셨군요!<br><br>
                     	게임 시작!!</a>
                     <div class="location-image" style="min-height: 100vh;">
                     	<img src="https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2017/08/18173246/FullSizeRender4.jpg" style="min-height: 100vh;">

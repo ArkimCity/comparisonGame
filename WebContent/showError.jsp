@@ -14,8 +14,7 @@
 		<h3>${requestScope.errorMsg}</h3>
 		<br>
 		<br>
-		<br> <a href="${pageContext.request.contextPath}/index.html">메인
-			화면으로 이동하기</a>
+		<br> <a href="${pageContext.request.contextPath}/index.html">메인 화면으로 이동하기</a>
 	</center>
 </body>
 </html>

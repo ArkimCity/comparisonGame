@@ -19,6 +19,15 @@ import org.apache.commons.lang.StringUtils;
 public class Crawler {
 	static String apikey = "A9CAF26B128DB44DA671FA8334A73CE9"; //국어대사전
 
+	public static void main(String[] args) {
+		try {
+			googleImageCrawler("강조");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static ArrayList<HashMap<String, String>> crawler(String inputnumber) {
 		String url = "https://stdict.korean.go.kr/api/view.do?key=" + apikey + "&advanced=y&method=TARGET_CODE&q=";
 		ArrayList<HashMap<String, String>> resultlist = new ArrayList<HashMap<String, String>>();
@@ -53,7 +62,6 @@ public class Crawler {
 	}
 
 	public static ArrayList<String> relatedNaverCrawler(String input) throws IOException {
-		System.out.println("네이버 연관 검색어");
 		ArrayList<String> resultList = new ArrayList<String>();
 		String url;
 		Document doc; 
@@ -74,20 +82,16 @@ public class Crawler {
 	}
 	
 	public static ArrayList<String> relatedGoogleCrawler(String input) throws IOException {
-		System.out.println("구글 연관 검색어");
 		ArrayList<String> resultList = new ArrayList<String>();
 		String url;
 		Document doc; 
 		
 		String encoded = URLEncoder.encode(input,"utf-8"); //﻿※
 		url = "https://www.google.com/search?q="+encoded;
-		System.out.println(url);		
 		
 		doc = Jsoup.connect(url).execute().parse();
 		
 		Elements relatedwords = doc.select("p.nVcaUb");
-		System.out.println(relatedwords);
-		System.out.println(relatedwords.size());
 		
 		for(Element e : relatedwords) {
 			resultList.add(StringUtils.substringBetween(StringUtils.substringBetween(e.toString(), "\">", "</p>"), "\">", "</a>"));
@@ -97,26 +101,26 @@ public class Crawler {
 	}
 	
 	public static ArrayList<HashMap<String, String>> googleImageCrawler(String input) throws IOException {
-		System.out.println("구글 이미지 검색중");
 		ArrayList<HashMap<String, String>> resultList = new ArrayList<HashMap<String, String>>();
 		String url;
 		Document doc; 
 		
 		String encoded = URLEncoder.encode(input,"utf-8"); //﻿※
 		url = "https://www.google.com/search?q="+ encoded + "&newwindow=1&sxsrf=ALeKk015_AA4LJD6gWU_Az6s8DGuVZZMPA:1609206583430&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjv2ZnWifLtAhUQG6YKHaBCBkUQ_AUoAXoECBMQAw&biw=1247&bih=616";
-		System.out.println(url);		
 		
 		doc = Jsoup.connect(url).execute().parse();
 		
 		Elements images = doc.select("img");
-		System.out.println(images.size());
 		
 		for(Element e : images) {
-			HashMap<String, String> minimap = new HashMap<String, String>();
-			minimap.put("title", StringUtils.substringBetween(e.toString(), "alt=\"", "\""));
-			minimap.put("forFoodsSource", StringUtils.substringBetween(e.toString(), "src=\"", "\""));
-			minimap.put("source", e.toString().replace("data-src", "src"));
-			resultList.add(minimap);
+			if(e.toString().startsWith("<img class=\"rg_i Q4LuWd\" src=\"data")) {
+			} else {
+				HashMap<String, String> minimap = new HashMap<String, String>();
+				minimap.put("title", StringUtils.substringBetween(e.toString(), "alt=\"", "\""));
+				minimap.put("forFoodsSource", StringUtils.substringBetween(e.toString(), "src=\"", "\""));
+				minimap.put("source", e.toString().replace("data-src", "src"));
+				resultList.add(minimap);
+			}
 		}
 		resultList.remove(0);
 		log.warn("googleImageCrawler 실행 기록");
@@ -124,19 +128,16 @@ public class Crawler {
 	}
 	
 	public static ArrayList<HashMap<String, String>> naverImageCrawler(String input) throws IOException {
-		System.out.println("네이버 이미지 검색중");
 		ArrayList<HashMap<String, String>> resultList = new ArrayList<HashMap<String, String>>();
 		String url;
 		Document doc; 
 		
 		String encoded = URLEncoder.encode(input,"utf-8"); //﻿※
 		url = "https://search.naver.com/search.naver?sm=tab_hty.top&where=image&query="+ encoded;
-		System.out.println(url);		
 		
 		doc = Jsoup.connect(url).execute().parse();
 		
 		Elements relatedwords = doc.select("div.thumb");
-		System.out.println(relatedwords.size());
 		
 		for(Element e : relatedwords) {
 			HashMap<String, String> minimap = new HashMap<String, String>();

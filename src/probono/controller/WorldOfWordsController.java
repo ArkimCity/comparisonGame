@@ -67,7 +67,6 @@ public class WorldOfWordsController extends HttpServlet {
 		String url = "showError.jsp";
 		String address = null;
 		String searchKeyWords = request.getParameter("searchKeyWords");
-		System.out.println(request.getParameter("lattitude")); 
 		if (request.getParameter("lattitude").equals("")) {
 			address = "";
 		}else {
