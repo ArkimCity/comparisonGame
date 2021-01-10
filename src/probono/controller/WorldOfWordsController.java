@@ -63,12 +63,15 @@ public class WorldOfWordsController extends HttpServlet {
 		}
 	}
 
-	private void foodWorldCup(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void foodWorldCup(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String url = "showError.jsp";
 		String searchKeyWords = request.getParameter("searchKeyWords");
+		String address = JsoupCrawlNaverRestaurants.googleAddressFinder(Double.valueOf(request.getParameter("lattitude")),Double.valueOf(request.getParameter("longtitude")));
 		ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
 		try {
-			results = JsoupCrawlNaverRestaurants.crawler(searchKeyWords, 37.600757, 126.766535);
+			results = JsoupCrawlNaverRestaurants.crawler(searchKeyWords, address);
+			request.getSession().setAttribute("address", address);
+			request.setAttribute("searchKeyWords", searchKeyWords);
 			request.setAttribute("restaurants", results.toString().replace("=",":"));
 			url = "worldCup.jsp";
 		} catch (Exception e) {

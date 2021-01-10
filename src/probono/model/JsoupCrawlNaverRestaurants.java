@@ -3,6 +3,7 @@ package probono.model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 
 public class JsoupCrawlNaverRestaurants {
+	
 	public static JSONObject jsonParser(String content) {
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObject = null;
@@ -30,12 +32,36 @@ public class JsoupCrawlNaverRestaurants {
 		return jsonObject;
 	}
 
-	public static ArrayList<HashMap<String, String>> crawler(String search, double lattitude, double longtitude) throws IOException {
+	public static String googleAddressFinder(Double lattitude, Double longtitude) {
+		//https://www.google.co.kr/maps/place/37.6044804N+126.77116689999998E/
+		Document doc = null;
+		String address = null;
+		try {
+			//https://m.map.naver.com/search2/search.nhn?query=한식&sm=clk&centerCoord=37.6005423:126.7663571
+			String url = "https://www.google.co.kr/maps/place/" + String.valueOf(lattitude) + "N+" + String.valueOf(longtitude) + "E";
+			System.out.println(url);
+			doc = Jsoup.connect(url).timeout(10000).get();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Elements scripts = doc.getElementsByTag("meta");
+		for (Element e : scripts) {
+			if (e.toString().contains("description")) {
+				address = e.toString();
+				break;
+			}
+		}
+		String longAddress = address.split("\"")[1];
+		return longAddress.split(" ")[1] + " " + longAddress.split(" ")[2];
+	}
+	
+	public static ArrayList<HashMap<String, String>> crawler(String search, String address) throws Exception {
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		Document doc = null;
 		try {
 			//https://m.map.naver.com/search2/search.nhn?query=한식&sm=clk&centerCoord=37.6005423:126.7663571
-			String url = "https://m.map.naver.com/search2/search.nhn?query=" + search + "&sm=clk&centerCoord=" + String.valueOf(lattitude) + ":" + String.valueOf(longtitude);
+			String url = "https://m.map.naver.com/search2/search.nhn?&query=" + address + " " + search;
 			System.out.println(url);
 			doc = Jsoup.connect(url).timeout(10000).get();
 		} catch (IOException e) {

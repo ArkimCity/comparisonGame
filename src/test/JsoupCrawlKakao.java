@@ -14,8 +14,8 @@ import org.jsoup.select.Elements;
 import probono.model.JsoupCrawlNaverRestaurants;
 
 public class JsoupCrawlKakao {
-	public static void main(String[] args) throws IOException {
-		HashMap<String, String> map = JsoupCrawlNaverRestaurants.crawler("시골향기", 37.6005423, 126.7663571).get(0);
+	public static void main(String[] args) throws Exception {
+		HashMap<String, String> map = JsoupCrawlNaverRestaurants.crawler("시골향기", "김포시 고촌읍").get(0);
 		System.out.println(crawler(map.get("name"), map.get("roadAddress")));
 		System.out.println(JsoupCrawlMangoPlate.crawler(map.get("name"), map.get("roadAddress")));
 	}

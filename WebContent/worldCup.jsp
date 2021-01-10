@@ -60,7 +60,10 @@
         <div style="min-height: 100vh;">
             <div class="image-container" style="min-height: 100vh;">
                 <article class="location-listing" style="min-height: 100vh;">
-                    <a class="location-title" onclick="startChoice()" href="#" style="min-height: 100vh;">게임 시작</a>
+                    <a class="location-title" onclick="startChoice()" href="#" style="min-height: 100vh;">
+                    	${sessionScope.address} 근처에서<br><br>
+                    	${requestScope.searchKeyWords} 를 검색하셨군요!<br><br>
+                    	게임 시작!!</a>
                     <div class="location-image" style="min-height: 100vh;">
                     	<img src="https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2017/08/18173246/FullSizeRender4.jpg" style="min-height: 100vh;">
                     </div>

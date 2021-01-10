@@ -32,8 +32,9 @@ body, html {
 							function(position) {
 								//alert(position.coords.latitude + ' ' + position.coords.longitude);
 								//여기서 위치 코드로 주소 받아오기
-								document.getElementById("location").value = position.coords.latitude
-										+ ' ' + position.coords.longitude;
+								document.getElementById("location").value = position.coords.latitude + ' ' + position.coords.longitude;
+								document.getElementById("lattitude").value = position.coords.latitude;
+								document.getElementById("longtitude").value = position.coords.longitude;
 							}, function(error) {
 								console.error(error);
 							}, {
@@ -101,9 +102,11 @@ body, html {
 			<hr>
 			<h1 class="w3-middle w3-animate-top">여기는 음식점 월드컵!</h1>
 			<form action="worldofwords?command=foodWorldCup" method="post">
-				검색해 주세요! : <input name="searchKeyWords" type="text" value="홍대 햄버거"><br> 
-				당신의 위치는? : <input id="location" type="text"><br>
-				<input type="submit" value="가즈아">
+				검색해 주세요! : <input name="searchKeyWords" type="text" value="햄버거"><br>
+				당신의 위치는 이 주변인가요? : <input id="location" type="text" value="죄송하지만 불러와지지 않으면 위치 기반 서비스를 사용할 수 없어요ㅜ" readonly><br> <input
+					id="lattitude" type="hidden" name="lattitude"> <input
+					id="longtitude" type="hidden" name="longtitude"> <input
+					type="submit" value="가즈아">
 			</form>
 		</div>
 	</div>
