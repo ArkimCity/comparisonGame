@@ -59,7 +59,10 @@
     }
 
 </script>
-<body style="background-color:#000000;">
+    <div style="position: relative; z-index: 2;">
+		<jsp:include page="NavigationBar.jsp"></jsp:include>
+	</div>
+<body style="background-color:#000000; margin-top: 100px;">
     <div id="start" style="min-height: 100vh;">
         <div style="min-height: 100vh;">
             <div class="image-container" style="min-height: 100vh;">
