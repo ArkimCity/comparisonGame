@@ -11,8 +11,10 @@ body {
 }
 
 img {
-	width: auto; /* need to overwrite inline dimensions */
-	height: auto;
+	max-width: 250px;
+	min-width: 250px;
+	max-width: 250px;
+	min-width: 250px;
 }
 
 h2 {

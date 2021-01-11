@@ -37,7 +37,7 @@
         } else {
             document.getElementById("comparison").innerHTML = 
             	document.getElementById("imageRight").innerHTML + "<center><br>우승은 " + document.getElementById("rightTitle").innerHTML + "!!"
-            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.html\">메인 화면으로 이동하기</a></center>";
+            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/worldofwords?command=getWorldCupList\">월드컵 리스트로 이동하기</a></center>";
         }
     }
     
@@ -52,7 +52,7 @@
         } else {
             document.getElementById("comparison").innerHTML = 
             	document.getElementById("imageLeft").innerHTML + "<center><br>우승은 " + document.getElementById("leftTitle").innerHTML + "!!"
-            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.html\">메인 화면으로 이동하기</a></center>";;
+            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/worldofwords?command=getWorldCupList\">월드컵 리스트로 이동하기</a></center>";
         }
     }
     
@@ -100,4 +100,5 @@
         <div id="result"></div>
     </div>
 </body>
+	<center><a href="${pageContext.request.contextPath}/index.html" style="position: absolute; bottom: 0px;">메인 화면으로 돌아가기</a></center>
 </html>
