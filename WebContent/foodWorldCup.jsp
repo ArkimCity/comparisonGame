@@ -1,14 +1,13 @@
-<%@page import="org.json.simple.parser.JSONParser"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page import="org.json.simple.parser.JSONParser" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>왼쪽? 오른쪽?</title>
     <link rel="stylesheet" href="foodWorldCup.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
@@ -38,7 +37,7 @@
         } else {
             document.getElementById("comparison").innerHTML = 
             	document.getElementById("imageRight").innerHTML + "<center><br>우승은 " + document.getElementById("rightTitle").innerHTML + "!!"
-            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.html\">메인 화면으로 이동하기</a></center>";
+            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.jsp\">메인 화면으로 이동하기</a></center>";
         }
     }
     
@@ -54,7 +53,7 @@
         } else {
             document.getElementById("comparison").innerHTML = 
             	document.getElementById("imageLeft").innerHTML + "<center><br>우승은 " + document.getElementById("leftTitle").innerHTML + "!!"
-            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.html\">메인 화면으로 이동하기</a></center>";;
+            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.jsp\">메인 화면으로 이동하기</a></center>";;
         }
     }
     
@@ -111,5 +110,4 @@
         <div id="result"></div>
     </div>
 </body>
-    <center><a href="${pageContext.request.contextPath}/index.html" style="position: absolute; bottom: 0px;">메인 화면으로 돌아가기</a></center>
 </html>

@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<title>World of Words</title>
+<title>왼쪽? 오른쪽?</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -66,7 +65,7 @@ body, html {
 	<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
 		<div class="w3-display-middle">
 			<h4 class="w3-middle w3-animate-top">여기는 음식점 으깨기 리그!</h4>
-			<form action="worldofwords?command=foodWorldCup" method="post">
+			<form action="comparisonGame?command=foodWorldCup" method="post">
 				위치 정보를 제공해주시면 <br>더 정확한 결과가 나옵니다!<br>
 				<input id="location" type="text" value="위치 서비스 사용불가ㅜ" readonly><br><br>
 				검색해 주세요! : <input name="searchKeyWords" type="text" value="아구찜"><br><br>
