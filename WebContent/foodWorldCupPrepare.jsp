@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <title>World of Words</title>
 <meta charset="UTF-8">
@@ -23,44 +25,57 @@ body, html {
 }
 </style>
 <head>
+<script>
+	function getLocation() {
+		if (navigator.geolocation) { // GPS를 지원하면
+			navigator.geolocation.getCurrentPosition(
+				function(position) {
+					//alert(position.coords.latitude + ' ' + position.coords.longitude);
+					document.getElementById("location").value = "위치 확인 완료!";
+					document.getElementById("lattitude").value = position.coords.latitude;
+					document.getElementById("longtitude").value = position.coords.longitude;
+				}, function(error) {
+					console.error(error);
+				}, {
+					enableHighAccuracy : false,
+					maximumAge : 0,
+					timeout : Infinity
+				});
+		} else {
+			alert('GPS를 지원하지 않습니다');
+		}
+	}
+	getLocation();
+</script>
+<script>
+	// Script to open and close sidebar
+	function w3_open() {
+		document.getElementById("mySidebar").style.display = "block";
+	}
+	function w3_close() {
+		document.getElementById("mySidebar").style.display = "none";
+	}
+</script>
+
+<!-- Sidebar (hidden by default) -->
 </head>
+<div style="position: relative; z-index: 2;">
+	<jsp:include page="NavigationBar.jsp"></jsp:include>
+</div>
 <body>
 	<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
 		<div class="w3-display-middle">
-			<h1  class="w3-middle w3-animate-top"><a href="worldofwords?command=getWorldCupList">어떤 월드컵들이 있나요?</a></h1>
-			<hr>
-			<a href="foodWorldCupPrepare.jsp">주변 식당 리그도 있어요!</a>
+			<h4 class="w3-middle w3-animate-top">여기는 음식점 으깨기 리그!</h4>
+			<form action="worldofwords?command=foodWorldCup" method="post">
+				위치 정보를 제공해주시면 <br>더 정확한 결과가 나옵니다!<br>
+				<input id="location" type="text" value="위치 서비스 사용불가ㅜ" readonly><br><br>
+				검색해 주세요! : <input name="searchKeyWords" type="text" value="아구찜"><br><br>
+				<input id="lattitude" type="hidden" name="lattitude"> 
+				<input id="longtitude" type="hidden" name="longtitude"> 
+				<input type="submit" value="가즈아">
+			</form>
 		</div>
 	</div>
 </body>
-</html>
 
-<!-- 
-    
-    게임 고르기 화면
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <p>
-		&nbsp;&nbsp;&nbsp;<a href="probono?command=probonoProjectAll">1. 진행중인 Probono Project 모두 검색</a>
-	<p>
-		&nbsp;&nbsp;&nbsp;<a href="probono?command=activistAll">2. 재능 기부 프로젝트에 참여중인 기부자 모두 검색</a>
-	<p>
-		&nbsp;&nbsp;&nbsp;<a href="activistInsert.html">3. 재능 기부자 가입하기</a>
-	<p>
-	
-	<form action="probono?command=activist" method="post">
-		&nbsp;&nbsp;&nbsp; 4. 기부자 ID : 
-		<input type="text" name="activistId">
-		<input type="submit" value="검색">
-	</form>
-	<p>
-	<hr> -->
+</html>

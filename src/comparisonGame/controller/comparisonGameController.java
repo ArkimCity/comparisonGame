@@ -17,6 +17,7 @@ import comparisonGame.model.JsoupCrawlNaverRestaurants;
 import comparisonGame.model.LoginService;
 import comparisonGame.model.comparisonGameCRUDService;
 import comparisonGame.model.dto.CategoryEntity;
+import comparisonGame.model.dto.GameDataEntity;
 import comparisonGame.model.dto.UsersEntity;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,6 +41,8 @@ public class comparisonGameController extends HttpServlet {
 				foodWorldCup(request, response); 
 			}else if(command.equals("getWorldCupList")){//음식 월드컵 모듈과 연결
 				getWorldCupList(request, response); 
+			}else if(command.equals("getWorldCup")){//음식 월드컵 모듈과 연결
+				getWorldCup(request, response); 
 			}else {
 				request.setAttribute("errorMsg", "잘못된 명령입니다. 다시 시도해 주십시오");
 				request.getRequestDispatcher("showError.jsp").forward(request, response);
@@ -50,6 +53,30 @@ public class comparisonGameController extends HttpServlet {
 			request.getRequestDispatcher("showError.jsp").forward(request, response);
 			e.printStackTrace();
 		}
+	}
+
+	private void getWorldCup(HttpServletRequest request, HttpServletResponse response) throws ServletException, Exception {
+		String url = "showError.jsp";
+		ArrayList<String> results = new ArrayList<String>();
+		String category = request.getParameter("category");
+		try {
+			ArrayList<GameDataEntity> gamedatas = comparisonGameCRUDService.getGameData(category);
+			for (GameDataEntity g : gamedatas) {
+				HashMap<String, String> minimap = new HashMap<String, String>();
+				minimap.put("\"title\"", "\"" + g.getTitle() + "\"");
+				minimap.put("\"imgsrc\"", "\"" + g.getImgsrc().replace("\"", "'") + "\"");
+				minimap.put("\"parameter\"", "\"" + g.getParameter() + "\"");
+				results.add(minimap.toString().replace("=", ":")); 
+			}
+			request.setAttribute("gamedatas", results); 
+			request.setAttribute("category", category);
+			url = "worldCup.jsp";
+		} catch (Exception e) {
+			request.setAttribute("errorMsg", e.getMessage());
+			e.printStackTrace();
+		}
+		log.warn(category +"로 getWorldCup 실행기록");
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	private void getWorldCupList(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -70,8 +97,8 @@ public class comparisonGameController extends HttpServlet {
 			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
 		}
+		log.warn("getWorldCupList 실행기록");
 		request.getRequestDispatcher(url).forward(request, response);
-		
 	}
 
 	private void foodWorldCup(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -89,11 +116,12 @@ public class comparisonGameController extends HttpServlet {
 			request.getSession().setAttribute("address", address);
 			request.setAttribute("searchKeyWords", searchKeyWords);
 			request.setAttribute("restaurants", results.toString().replace("=",":"));
-			url = "worldCup.jsp";
+			url = "foodWorldCup.jsp";
 		} catch (Exception e) {
 			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
 		}
+		log.warn("foodWorldCup 실행기록");
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
@@ -118,6 +146,7 @@ public class comparisonGameController extends HttpServlet {
 				request.setAttribute("errorMsg", s.getMessage());
 			}
 		}
+		log.warn("userInsert 실행기록");
 		request.getRequestDispatcher(url).forward(request, response);
 
 	}
@@ -131,6 +160,7 @@ public class comparisonGameController extends HttpServlet {
 			request.setAttribute("errorMsg", s.getMessage());
 			s.printStackTrace();
 		}
+		log.warn("logout 실행기록");
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
@@ -145,6 +175,7 @@ public class comparisonGameController extends HttpServlet {
 			url = "showError.jsp";
 			e.printStackTrace();
 		}
+		log.warn("login 실행기록");
 		request.getRequestDispatcher(url).forward(request, response);
 
 	}

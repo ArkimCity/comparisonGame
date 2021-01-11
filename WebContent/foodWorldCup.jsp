@@ -9,31 +9,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="worldCup.css">
+    <link rel="stylesheet" href="foodWorldCup.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
 </head>
 <script>
-	const gamedatas = JSON.parse(`${requestScope.gamedatas}`);
+	const foods = JSON.parse(`${requestScope.restaurants}`);
 
-    let tempgamedatas;
+    let tempfoods;
 
     function startChoice() {
         document.getElementById("start").style.display = "none";
-        tempgamedatas = gamedatas.map(v => v);
+        tempfoods = foods.map(v => v);
         choiceLeft();
         choiceRight();
         document.getElementById("comparison").style.display = "";
     }
 
     function choiceRight() {
-        if (tempgamedatas.length > 0) {
-            let tempIndex = parseInt(Math.random()*(tempgamedatas.length));
-            let temp = tempgamedatas[tempIndex];
-            document.getElementById("imageLeft").innerHTML = temp.imgsrc.replace(":","=");
-            document.getElementById("leftTitle").innerHTML = temp.title + "<br><br>";
-            document.getElementById("leftTitle").innerHTML += temp.parameter;
-            tempgamedatas.splice(tempIndex, 1);
+        if (tempfoods.length > 0) {
+            let tempIndex = parseInt(Math.random()*(tempfoods.length));
+            let temp = tempfoods[tempIndex];
+            document.getElementById("imageSourceLeft").src = temp.thumUrl;
+            document.getElementById("leftTitle").innerHTML = temp.name + "<br><br>";
+            document.getElementById("leftTitle").innerHTML += temp.category + "<br><br>";
+            document.getElementById("leftTitle").innerHTML += temp.roadAddress;
+            tempfoods.splice(tempIndex, 1);
         } else {
             document.getElementById("comparison").innerHTML = 
             	document.getElementById("imageRight").innerHTML + "<center><br>우승은 " + document.getElementById("rightTitle").innerHTML + "!!"
@@ -42,13 +43,14 @@
     }
     
     function choiceLeft() {
-        if (tempgamedatas.length > 0) {
-            let tempIndex = parseInt(Math.random() * (tempgamedatas.length));
-            let temp = tempgamedatas[tempIndex];
-            document.getElementById("imageRight").innerHTML = temp.imgsrc.replace(":","=");
-            document.getElementById("rightTitle").innerHTML = temp.title + "<br><br>";
-            document.getElementById("rightTitle").innerHTML += temp.parameter;
-            tempgamedatas.splice(tempIndex, 1);
+        if (tempfoods.length > 0) {
+            let tempIndex = parseInt(Math.random() * (tempfoods.length));
+            let temp = tempfoods[tempIndex];
+            document.getElementById("imageSourceRight").src = temp.thumUrl;
+            document.getElementById("rightTitle").innerHTML = temp.name + "<br><br>";
+            document.getElementById("rightTitle").innerHTML += temp.category + "<br><br>";
+            document.getElementById("rightTitle").innerHTML += temp.roadAddress;
+            tempfoods.splice(tempIndex, 1);
         } else {
             document.getElementById("comparison").innerHTML = 
             	document.getElementById("imageLeft").innerHTML + "<center><br>우승은 " + document.getElementById("leftTitle").innerHTML + "!!"
@@ -67,10 +69,19 @@
             <div class="image-container" style="min-height: 100vh;">
                 <article class="location-listing" style="min-height: 100vh;">
                     <a class="location-title" onclick="startChoice()" href="#" style="min-height: 100vh;">
-                    	${requestScope.category} 월드컵을 선택하셨군요!<br><br>
+                    	<%
+                    		String adress = session.getAttribute("address").toString();
+                    		if (adress.equals("")){
+                    			out.print("위치는 알려주시지 않았지만ㅜ");
+                    		}else{
+                    			out.print(adress + " 근처에서");
+                    		}
+                    	%>
+                    	<br><br>
+                    	${requestScope.searchKeyWords} 을/를 검색하셨군요!<br><br>
                     	게임 시작!!</a>
-                    <div id="startingImageContainer" class="location-image" style="min-height: 100vh;">
-                    	<img src="https://www.loverugbyleague.com/content/uploads/2018/11/The-Rugby-League-World-Cup-trophy-restored-with-the-Cockerel.jpg" style="min-height: 100vh;">
+                    <div class="location-image" style="min-height: 100vh;">
+                    	<img src="https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2017/08/18173246/FullSizeRender4.jpg" style="min-height: 100vh;">
                     </div>
                 </article>
             </div>
@@ -82,7 +93,7 @@
                 <article class="location-listing">
                     <a id="leftTitle" class="location-title" onclick="choiceLeft()" href="#"></a>
                     <div id="imageLeft" class="location-image">
-                    	<img id="imageSourceLeft" src="" style="min-height: 50vh;">
+                    	<img id="imageSourceLeft" src="https://res.heraldm.com/phpwas/restmb_idxmake.php?idx=507&simg=/content/image/2019/07/01/20190701000670_0.jpg" style="min-height: 50vh;">
                     </div>
                 </article>
             </div>
@@ -92,7 +103,7 @@
                 <article class="location-listing">
                     <a id="rightTitle" class="location-title" onclick="choiceRight()" href="#"></a>
                     <div id="imageRight" class="location-image">
-                    	<img id="imageSourceRight" src="" style="min-height: 50vh;">
+                    	<img id="imageSourceRight" src="https://res.heraldm.com/phpwas/restmb_idxmake.php?idx=507&simg=/content/image/2019/07/01/20190701000670_0.jpg" style="min-height: 50vh;">
                     </div>
                 </article>
             </div>

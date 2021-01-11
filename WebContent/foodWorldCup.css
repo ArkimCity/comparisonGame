@@ -5,9 +5,9 @@ html, body, h1, h2, h3, h4, h5 {
 HTML CSSResult Skip Results Iframe
 EDIT ON
 body {
-	padding: 20px;
+	padding: 0px;
 	font-family: sans-serif;
-	background: #f2f2f2;
+    background: #f2f2f2;
 }
 
 img {
@@ -32,7 +32,10 @@ h2 {
 
 .location-image {
 	line-height: 0;
-	overflow: hidden;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .location-image img {
@@ -78,10 +81,31 @@ h2 {
 		filter: blur(2px);
 	}
 }
-Resources1×0
+
+#start {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 95vh;
+  }
+
+#bg,
+#imageLeft,
+#imageRight,
+article,
+#comparison,
+div.image-container,
+#location-image {
+	min-width: 100%;
+	height: 48vh;
+
+}
+
+img {
+	width:100%;
+	height:100%;
+	object-fit:contain;
+}
 
 
-.5×0
-
-
-.25×Rerun
+/* for fade in and out */

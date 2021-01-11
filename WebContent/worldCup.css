@@ -10,7 +10,7 @@ body {
     background: #f2f2f2;
 }
 
-img {
+img { 
 	width: auto; /* need to overwrite inline dimensions */
 	height: auto;
 }
