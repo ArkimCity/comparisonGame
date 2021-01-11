@@ -16,50 +16,85 @@
 <script>
 	const gamedatas = JSON.parse(`${requestScope.gamedatas}`);
 
+    let tempCurrentWinners;
     let tempgamedatas;
+    let possibleGameLength = [];
+    let detector = 2;
+    let temptwogamedatas = [];
+    let nextRound = [];
+
+    while (detector <= gamedatas.length) {
+        possibleGameLength.push(detector);
+        detector = detector * 2;
+    }
+
+    function pickSize(number){
+        tempgamedatas = gamedatas.map(v => v);
+        for (i=0 ; i < number; i++){
+            let tempIndex = parseInt(Math.random() * (tempgamedatas.length));
+            temptwogamedatas.push(tempgamedatas[tempIndex]);
+            tempgamedatas.splice(tempIndex, 1);
+        }
+    }
 
     function startChoice() {
         document.getElementById("start").style.display = "none";
-        tempgamedatas = gamedatas.map(v => v);
+        tempgamedatas = pickSize(possibleGameLength[-1]);
         choiceLeft();
         choiceRight();
         document.getElementById("comparison").style.display = "";
     }
 
-    function choiceRight() {
-        if (tempgamedatas.length > 0) {
-            let tempIndex = parseInt(Math.random()*(tempgamedatas.length));
-            let temp = tempgamedatas[tempIndex];
-            document.getElementById("imageLeft").innerHTML = temp.imgsrc.replace(":","=");
-            document.getElementById("leftTitle").innerHTML = temp.title + "<br><br>";
-            document.getElementById("leftTitle").innerHTML += temp.parameter;
-            tempgamedatas.splice(tempIndex, 1);
-        } else {
+    function roundChecker(direction) {
+        let detector = true;
+        if (tempgamedatas.length == 0 && nextRound.length == 1) {
             document.getElementById("comparison").innerHTML = 
-            	document.getElementById("imageRight").innerHTML + "<center><br>우승은 " + document.getElementById("rightTitle").innerHTML + "!!"
-            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/worldofwords?command=getWorldCupList\">월드컵 리스트로 이동하기</a></center>";
+            document.getElementById("image" + direction).innerHTML + "<center><br>우승은 " + document.getElementById("title" + direction).innerHTML + "!!"
+            + "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.html\">메인 화면으로 이동하기</a></center>";
+            detector = false;
+        } else if (tempgamedatas.length == 0 && nextRound.length > 1){
+            tempgamedatas = nextRound.map(v => v);
+            nextRound = [];
         }
+        return detector;
     }
     
-    function choiceLeft() {
-        if (tempgamedatas.length > 0) {
-            let tempIndex = parseInt(Math.random() * (tempgamedatas.length));
-            let temp = tempgamedatas[tempIndex];
-            document.getElementById("imageRight").innerHTML = temp.imgsrc.replace(":","=");
-            document.getElementById("rightTitle").innerHTML = temp.title + "<br><br>";
-            document.getElementById("rightTitle").innerHTML += temp.parameter;
-            tempgamedatas.splice(tempIndex, 1);
-        } else {
-            document.getElementById("comparison").innerHTML = 
-            	document.getElementById("imageLeft").innerHTML + "<center><br>우승은 " + document.getElementById("leftTitle").innerHTML + "!!"
-            	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/worldofwords?command=getWorldCupList\">월드컵 리스트로 이동하기</a></center>";
-        }
-    }
-    
-    //1. 월드컵 진행화면 - 진짜 월드컵 식으로 16강 처럼 - 2진수 비교하면서 자르겠습니다. 4 8 16
-    //2. 월드컵 생성화면 - 
-    //3. 월드컵 수정화면
+    function loadNext(){
+        let tempIndex = parseInt(Math.random()*(tempgamedatas.length));
+        let temp = tempgamedatas[tempIndex];
+        document.getElementById("imageLeft").innerHTML = temp.imgsrc.replace(":","=");
+        document.getElementById("titleLeft").innerHTML = temp.title;
+        // document.getElementById("titleLeft").innerHTML += temp.parameter;
+        tempgamedatas.splice(tempIndex, 1);
 
+        let tempIndex2 = parseInt(Math.random() * (tempgamedatas.length));
+        let temp2 = tempgamedatas[tempIndex2];
+        document.getElementById("imageRight").innerHTML = temp2.imgsrc.replace(":","=");
+        document.getElementById("titleRight").innerHTML = temp2.title;
+        // document.getElementById("titleRight").innerHTML += temp2.parameter;
+        tempgamedatas.splice(tempIndex2, 1);
+    }
+ 
+    function startChoice() {
+        document.getElementById("start").style.display = "none";
+        tempgamedatas = gamedatas.map(v => v);
+        loadNext();
+        document.getElementById("comparison").style.display = "";
+    }
+
+    function choiceRight() {
+        nextRound.push(gamedatas.find(function(item) {return item.title === document.getElementById("titleRight").innerHTML}));
+        if (roundChecker("Right")) {
+            loadNext();
+        }
+    }
+        
+    function choiceLeft() {
+        nextRound.push(gamedatas.find(function(item) {return item.title === document.getElementById("titleLeft").innerHTML}));
+        if (roundChecker("Left")) {
+            loadNext();
+        }
+    }
 </script>
 <body style="background-color:#000000;">
     <div id="start" style="min-height: 100vh;">
@@ -80,7 +115,7 @@
         <div>
             <div class="image-container">
                 <article class="location-listing">
-                    <a id="leftTitle" class="location-title" onclick="choiceLeft()" href="#"></a>
+                    <a id="titleLeft" class="location-title" onclick="choiceLeft()" href="#"></a>
                     <div id="imageLeft" class="location-image">
                     	<img id="imageSourceLeft" src="" style="min-height: 50vh;">
                     </div>
@@ -90,7 +125,7 @@
         <div id="comparison">
             <div class="image-container">
                 <article class="location-listing">
-                    <a id="rightTitle" class="location-title" onclick="choiceRight()" href="#"></a>
+                    <a id="titleRight" class="location-title" onclick="choiceRight()" href="#"></a>
                     <div id="imageRight" class="location-image">
                     	<img id="imageSourceRight" src="" style="min-height: 50vh;">
                     </div>
@@ -100,5 +135,4 @@
         <div id="result"></div>
     </div>
 </body>
-	<center><a href="${pageContext.request.contextPath}/index.html" style="position: absolute; bottom: 0px;">메인 화면으로 돌아가기</a></center>
 </html>
