@@ -51,16 +51,34 @@ public class WorldOfWordsController extends HttpServlet {
 				brainStormResult(request, response); 
 			}else if(command.equals("foodWorldCup")){//음식 월드컵 모듈과 연결
 				foodWorldCup(request, response); 
+			}else if(command.equals("getWorldCupList")){//음식 월드컵 모듈과 연결
+				getWorldCupList(request, response); 
 			}else {
 				request.setAttribute("errorMsg", "잘못된 명령입니다. 다시 시도해 주십시오");
 				request.getRequestDispatcher("showError.jsp").forward(request, response);
 			}
 			
-		}catch(Exception s){
-			request.setAttribute("errorMsg", s.getMessage());
+		}catch(Exception e){
+			request.setAttribute("errorMsg", e.getMessage());
 			request.getRequestDispatcher("showError.jsp").forward(request, response);
-			s.printStackTrace();
+			e.printStackTrace();
 		}
+	}
+
+	private void getWorldCupList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String url = "showError.jsp";
+		ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
+		try {
+			results = WorldOfWordsCRUDService.getWorldCupList();
+			//임시로 하나 만들어 둔 예시 -> title, source로 불러올 예정이기 때문에 어레이리스트 안에 있는 각 키값은 이 단어로 매칭 필요
+			request.setAttribute("worldCupList", results);
+			url = "worldCupList.jsp";
+		} catch (Exception e) {
+			request.setAttribute("errorMsg", e.getMessage());
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+		
 	}
 
 	private void foodWorldCup(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -86,7 +104,7 @@ public class WorldOfWordsController extends HttpServlet {
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
-	private void brainStormResult(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void brainStormResult(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String url = "showError.jsp";
 		ArrayList<HashMap<String, ArrayList<String>>> relatedWordMap = new ArrayList<HashMap<String, ArrayList<String>>>();
 		ArrayList<HashMap<String, ArrayList<String>>> relatedWordMap2 = new ArrayList<HashMap<String, ArrayList<String>>>();
@@ -113,9 +131,9 @@ public class WorldOfWordsController extends HttpServlet {
 			request.setAttribute("relatedWordMap", relatedWordMap);
 			request.setAttribute("relatedWordMap2", relatedWordMap2);
 			url = "brainStormResult.jsp";
-		} catch (Exception s) {
-			request.setAttribute("errorMsg", s.getMessage());
-			s.printStackTrace();
+		} catch (Exception e) {
+			request.setAttribute("errorMsg", e.getMessage());
+			e.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}

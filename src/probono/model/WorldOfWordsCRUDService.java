@@ -2,6 +2,7 @@
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -142,6 +143,12 @@ public class WorldOfWordsCRUDService {
 
 	public static void saveUserWord(String id, String userWord) throws SQLException {
 		UserWordDAO.saveUserWord(id, userWord);
+		
+	}
+
+	public static ArrayList<HashMap<String, String>> getWorldCupList() {
+		return null;
+		// TODO Auto-generated method stub
 		
 	}
 }
