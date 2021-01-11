@@ -17,8 +17,8 @@ public class LoginService {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         EntityManager em = PublicCommon.getEntityManager();
-        String id = request.getParameter("id");
-        String inputPassword = request.getParameter("pw");
+        String id = request.getParameter("userId");
+        String inputPassword = request.getParameter("password");
         String password = null;
         boolean result = false;
 
@@ -32,7 +32,7 @@ public class LoginService {
                 em.close();
             }
             if (password.equals(inputPassword)) {
-                session.setAttribute("id", id);
+                session.setAttribute("userId", id);
                 log.warn(id + " | 로그인 성공 기록");
                 result = true;
             } else {

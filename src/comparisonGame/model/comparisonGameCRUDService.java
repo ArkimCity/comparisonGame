@@ -20,7 +20,7 @@ import java.util.List;
 public class comparisonGameCRUDService {
     // ========================= UsersEntity | CRUD | 시작 =========================
     // 새로운 사용자 추가하기 | 시작
-    public static void addUser(UsersEntity user)
+    public static void userInsert(UsersEntity user)
             throws MessageException {
         EntityManager em = PublicCommon.getEntityManager();
         log.warn("EntityManager 생성 기록");

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>World of Words</title>
+<title>왼쪽? 오른쪽?</title>
 </head>
 <body>
 	<br>
@@ -14,7 +14,7 @@
 		<h3>${requestScope.errorMsg}</h3>
 		<br>
 		<br>
-		<br> <a href="${pageContext.request.contextPath}/index.html">메인 화면으로 이동하기</a>
+		<br> <a href="${pageContext.request.contextPath}/index.jsp">메인 화면으로 이동하기</a>
 	</center>
 </body>
 </html>
