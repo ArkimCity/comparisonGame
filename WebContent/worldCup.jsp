@@ -49,8 +49,8 @@
         let detector = true;
         if (tempgamedatas.length == 0 && nextRound.length == 1) {
             document.getElementById("comparison").innerHTML = 
-            document.getElementById("image" + direction).innerHTML + "<center><br>우승은 " + document.getElementById("title" + direction).innerHTML + "!!"
-            + "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.html\">메인 화면으로 이동하기</a></center>";
+            document.getElementById("image" + direction).innerHTML + "<center><br>우승은 " + document.getElementById("title" + direction).innerHTML + "!!";
+            /* + "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.jsp\">메인 화면으로 이동하기</a></center>"; */
             detector = false;
         } else if (tempgamedatas.length == 0 && nextRound.length > 1){
             tempgamedatas = nextRound.map(v => v);
@@ -96,13 +96,14 @@
         }
     }
 </script>
+
 <body style="background-color:#000000;">
     <div id="start" style="min-height: 100vh;">
         <div style="min-height: 100vh;">
             <div class="image-container" style="min-height: 100vh;">
                 <article class="location-listing" style="min-height: 100vh;">
                     <a class="location-title" onclick="startChoice()" href="#" style="min-height: 100vh;">
-                    	${requestScope.category} 월드컵을 선택하셨군요!<br><br>
+                    	${requestScope.category}을 선택하셨군요!<br><br>
                     	게임 시작!!</a>
                     <div id="startingImageContainer" class="location-image" style="min-height: 100vh;">
                     	<img src="https://www.loverugbyleague.com/content/uploads/2018/11/The-Rugby-League-World-Cup-trophy-restored-with-the-Cockerel.jpg" style="min-height: 100vh;">
