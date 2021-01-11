@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="oracleDBUse">
-		<class>probono.model.dto.UserEntity</class>
-		<class>probono.model.dto.UserWordEntity</class>
-		<class>probono.model.dto.CommunityEntity</class>
+		<class>comparisonGame.model.dto.CategoryEntity</class>
+		<class>comparisonGame.model.dto.GameDataEntity</class>
+		<class>comparisonGame.model.dto.ScoreEntity</class>
+		<class>comparisonGame.model.dto.UsersEntity</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />

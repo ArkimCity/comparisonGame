@@ -14,7 +14,7 @@
 	<jsp:include page="NavigationBar.jsp"></jsp:include>
 </div>
 <body class="w3-light-grey"> <!-- image grid -->
-	<div class="child-page-listing" style="margin-top: 100px">
+	<div class="child-page-listing" style="margin-top: 80px">
 		<div class="grid-container">
 			<c:forEach items="${requestScope.worldCupList}" var="worldCup">
 				<article id="3691" class="location-listing">

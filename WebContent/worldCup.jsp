@@ -57,12 +57,13 @@
             	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.html\">메인 화면으로 이동하기</a></center>";;
         }
     }
+    
+    //1. 월드컵 진행화면 - 진짜 월드컵 식으로 16강 처럼 - 2진수 비교하면서 자르겠습니다. 4 8 16
+    //2. 월드컵 생성화면
+    //3. 월드컵 수정화면
 
 </script>
-    <div style="position: relative; z-index: 2;">
-		<jsp:include page="NavigationBar.jsp"></jsp:include>
-	</div>
-<body style="background-color:#000000; margin-top: 100px;">
+<body style="background-color:#000000;">
     <div id="start" style="min-height: 100vh;">
         <div style="min-height: 100vh;">
             <div class="image-container" style="min-height: 100vh;">

@@ -11,7 +11,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import probono.model.JsoupCrawlNaverRestaurants;
+import comparisonGame.model.JsoupCrawlNaverRestaurants;
 
 public class JsoupCrawlKakao {
 	public static void main(String[] args) throws Exception {
