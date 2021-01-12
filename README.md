@@ -2,10 +2,10 @@
  심심하거나 우울할 때 가끔씩 찾아와 주시면 '심신의 평화'를 얻게 되실겁니다...
 
 ## 📖Content
-* [1. 사용된 기술 스택(Stack)](#🛠️Stack)
-* [2. 데이터 구조(Structure)](#📊Structure)
-* [3. 사용법(How to USE?)](#🔰How-to-use)
-* [4. 마무리(Conclusion)](#📝Conclusion)
+* [1. 사용된 기술 스택(Stack)](#Stack)
+* [2. 데이터 구조(Structure)](#Structure)
+* [3. 사용법(How to USE?)](#How-to-use)
+* [4. 마무리(Conclusion)](#Conclusion)
 
 ## 🛠️Stack
 * Java
