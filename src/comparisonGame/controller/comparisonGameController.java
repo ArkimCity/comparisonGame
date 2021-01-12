@@ -43,9 +43,6 @@ public class comparisonGameController extends HttpServlet {
 				foodWorldCup(request, response);
 			} else if (command.equals("getWorldCupList")) {// 음식 월드컵 모듈과 연결
 				getWorldCupList(request, response);
-//			}else if(command.equals("get" +
-//					"")){//음식 월드컵 모듈과 연결
-//				getWorldCupList(request, response); 
 			} else if (command.equals("getWorldCup")) {// 음식 월드컵 모듈과 연결
 				getWorldCup(request, response);
 			} else {
@@ -131,6 +128,11 @@ public class comparisonGameController extends HttpServlet {
 		} catch (Exception e) {
 			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
+		}
+		if (address.equals("")){
+			request.setAttribute("address", "위치는 알려주시지 않았지만ㅜ");
+		}else{
+			request.setAttribute("address", address + " 근처에서");
 		}
 		log.warn("foodWorldCup 실행기록");
 		request.getRequestDispatcher(url).forward(request, response);

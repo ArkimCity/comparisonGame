@@ -11,7 +11,7 @@
 	<br>
 	<br>
 	<center>
-		<h3>재능 기부자 정보 수정하기 - 재능 분야 수정</h3>
+		<h3>유저 정보 수정하기 </h3>
 		<hr>
 		<p>
 		<form action="probono?command=activistUpdate" method="post">

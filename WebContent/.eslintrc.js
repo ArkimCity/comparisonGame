@@ -72,6 +72,7 @@ module.exports = {
     },
     "plugins": [
         "eslint-plugin-html",
+        "eslint-plugin-jsp",
         "jsp"
     ]
 };
