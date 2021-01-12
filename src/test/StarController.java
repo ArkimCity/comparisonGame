@@ -3,7 +3,7 @@ package test;
 import java.io.IOException;
 import java.util.HashMap;
 
-import comparisonGame.model.JsoupCrawlNaverRestaurants;
+import comparison.model.JsoupCrawlNaverRestaurants;
 
 public class StarController {
 	public static void main(String[] args) throws Exception {

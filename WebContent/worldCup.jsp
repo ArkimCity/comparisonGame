@@ -9,7 +9,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>왼쪽? 오른쪽?</title>
         <link rel="stylesheet" href="worldCup.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
