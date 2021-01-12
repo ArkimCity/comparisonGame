@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="shortcut icon" href="https://user-images.githubusercontent.com/17983434/104251193-82c82a00-54b2-11eb-8f37-9e4a9a393111.png" type="image/x-icon">
+<link rel="icon" href="https://user-images.githubusercontent.com/17983434/104251193-82c82a00-54b2-11eb-8f37-9e4a9a393111.png" type="image/x-icon">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="sweetalert.css">
 <link rel="stylesheet" href="worldCupList.css">
@@ -26,7 +28,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div class="col-xs-6 col-sm-3 col-lg-2" style="padding:2px">
 <div class="ibox">
 <div class="ibox-content product-box">
-<a class="w3-xlarge w3-wide w3-animate-opacity">강아지 월드컵</a>
+<a class="w3-xlarge w3-wide w3-animate-opacity">${worldCup.title}</a>
 <div class="product-imitation" style="height:200px;padding:0px">
 <div style="float:left;width:50%;height:180px;background-image: url('https://contents.sixshop.com/thumbnails/uploadedFiles/79226/product/image_1583484044683_750.jpg');background-repeat:no-repeat;background-size: cover;background-position: center top;display:inline-block;">
 </div>
@@ -41,31 +43,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </div>
 </div>
 <!-- 강아지 월드컵 | 끝 -->
-
-<!--  라면 월드컵 | 시작 -->
-<div class="child-page-listing w3-animate-opacity" style="margin-top: 100px">
-<div class="col-xs-6 col-sm-3 col-lg-2" style="padding:2px">
-<div class="ibox">
-<div class="ibox-content product-box">
-<a class="w3-xlarge w3-wide w3-animate-opacity">라면 월드컵</a>
-<div class="product-imitation" style="height:200px;padding:0px">
-<div style="float:left;width:50%;height:180px;background-image: url('https://www.costco.co.kr/medias/sys_master/images/h64/h96/9867844452382.jpg');background-repeat:no-repeat;background-size: cover;background-position: center top;display:inline-block;">
-</div>
-<div style="width:50%;height:180px;background-image: url('https://www.costco.co.kr/medias/sys_master/images/h16/h00/17480497725470.jpg');background-repeat:no-repeat;background-size: cover;background-position: center top;display:inline-block;">
-</div>
-<div style="float:left;color:#676a6c;width:50%;max-height:20px;overflow: hidden; text-overflow: ellipsis;white-space: nowrap;display:inline-block;">신라면</div>
-<div style="color:#676a6c;width:50%;max-height:20px;overflow: hidden; text-overflow: ellipsis;white-space: nowrap;display:inline-block;">진라면</div>
-</div>
-<div class="product-desc" style="cursor:Pointer" data-id="RAMEN">
-<div class="btn-group" data-id="RAMEN">
-<a href="comparisonGame?command=getWorldCup&category=${worldCup.title}" class="btn btn-sm btn-outline btn-danger" style="padding:7px 126px"><i class="fa fa-play"></i> 시작하기</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </c:forEach>
+<!--  라면 월드컵 | 시작 -->
 <!--  라면 월드컵 | 끝 -->
 
 	<%-- <div class="child-page-listing w3-animate-opacity" style="margin-top: 80px">
