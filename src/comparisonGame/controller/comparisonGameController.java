@@ -90,12 +90,13 @@ public class comparisonGameController extends HttpServlet {
 			categories = comparisonGameCRUDService.getCategories();
 			for (String c : categories) {
 				HashMap<String, String> minimap = new HashMap<String, String>();
+				ArrayList<GameDataEntity> g = comparisonGameCRUDService.getGameData(c);
 				minimap.put("title", c);
-				minimap.put("source", comparisonGameCRUDService.getGameData(c).get(0).getImgsrc());
-				minimap.put("listSource1", comparisonGameCRUDService.getGameData(c).get(0).getImgsrc().split("\"")[1]);
-				minimap.put("listTitle1", comparisonGameCRUDService.getGameData(c).get(0).getTitle());
-				minimap.put("listSource2", comparisonGameCRUDService.getGameData(c).get(1).getImgsrc().split("\"")[1]);
-				minimap.put("listTitle2", comparisonGameCRUDService.getGameData(c).get(1).getTitle());
+				minimap.put("source", g.get(0).getImgsrc());
+				minimap.put("listSource1", g.get(0).getImgsrc().split("\"")[1]);
+				minimap.put("listTitle1", g.get(0).getTitle());
+				minimap.put("listSource2", g.get(1).getImgsrc().split("\"")[1]);
+				minimap.put("listTitle2", g.get(1).getTitle());
 				results.add(minimap);
 			}
 			request.setAttribute("worldCupList", results);
