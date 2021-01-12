@@ -49,8 +49,9 @@
         let detector = true;
         if (tempgamedatas.length == 0 && nextRound.length == 1) {
             document.getElementById("comparison").innerHTML = 
-            document.getElementById("image" + direction).innerHTML + "<center><br>우승은 " + document.getElementById("title" + direction).innerHTML + "!!";
-            /* + "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.jsp\">메인 화면으로 이동하기</a></center>"; */
+            document.getElementById("image" + direction).innerHTML + "<center><br>우승은 " + document.getElementById("title" + direction).innerHTML + "!!"
+            + "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/comparisonGame?command=getWorldCupList\">월드컵 목록으로 이동하기</a>"
+            + "<br><br> <a href=\"${pageContext.request.contextPath}/index.jsp\">메인 화면으로 이동하기</a></center>";
             detector = false;
         } else if (tempgamedatas.length == 0 && nextRound.length > 1){
             tempgamedatas = nextRound.map(v => v);
@@ -64,14 +65,12 @@
         let temp = tempgamedatas[tempIndex];
         document.getElementById("imageLeft").innerHTML = temp.imgsrc.replace(":","=");
         document.getElementById("titleLeft").innerHTML = temp.title;
-        // document.getElementById("titleLeft").innerHTML += temp.parameter;
         tempgamedatas.splice(tempIndex, 1);
 
         let tempIndex2 = parseInt(Math.random() * (tempgamedatas.length));
         let temp2 = tempgamedatas[tempIndex2];
         document.getElementById("imageRight").innerHTML = temp2.imgsrc.replace(":","=");
         document.getElementById("titleRight").innerHTML = temp2.title;
-        // document.getElementById("titleRight").innerHTML += temp2.parameter;
         tempgamedatas.splice(tempIndex2, 1);
     }
  

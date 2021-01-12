@@ -95,6 +95,10 @@ public class comparisonGameController extends HttpServlet {
 				HashMap<String, String> minimap = new HashMap<String, String>();
 				minimap.put("title", c);
 				minimap.put("source", comparisonGameCRUDService.getGameData(c).get(0).getImgsrc());
+				minimap.put("listSource1", comparisonGameCRUDService.getGameData(c).get(0).getImgsrc().split("\"")[1]);
+				minimap.put("listTitle1", comparisonGameCRUDService.getGameData(c).get(0).getTitle());
+				minimap.put("listSource2", comparisonGameCRUDService.getGameData(c).get(1).getImgsrc().split("\"")[1]);
+				minimap.put("listTitle2", comparisonGameCRUDService.getGameData(c).get(1).getTitle());
 				results.add(minimap);
 			}
 			request.setAttribute("worldCupList", results);
