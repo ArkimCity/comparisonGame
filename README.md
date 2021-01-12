@@ -78,6 +78,7 @@
 |    └── worldCup.css
 |    └── worldCupList.css
 |    └── worldCupList.jsp
+├── .eslintrc.js
 ├── package.json
 ├── package-lock.json
 └── index.jsp
@@ -221,7 +222,7 @@ public class JsoupCrawlNaverRestaurants {
 ---
 
 ## 🔰How to USE?
-* <u>모든 기능을 이용하려면 먼저 회원가입을 해야 한다.</u>
+* **모든 기능을 이용하려면 먼저 회원가입을 해야 한다.**
 
     <img src="https://user-images.githubusercontent.com/17983434/104255812-40581a80-54bd-11eb-8600-2d1eb127ae12.PNG" width="50%" height="50%" title="1" alt="1">
 
@@ -236,6 +237,8 @@ public class JsoupCrawlNaverRestaurants {
 * **Enjoy~!**
 
     <img src="https://user-images.githubusercontent.com/17983434/104260418-d2b0ec00-54c6-11eb-8e5a-c7374134c7a0.gif" width="50%" height="50%" title="4" alt="4">
+
+---
 
 * 이번에는 다른 게임('이따가 뭐 먹지')을 선택해 보겠다.
 
@@ -260,7 +263,7 @@ public class JsoupCrawlNaverRestaurants {
 ## 📝Conclusion
 이번 프로젝트에서도 크롤링이 사용되었습니다. '구글 지도'에서 해당 사용자의 위도와 경도를 불러온 뒤, '네이버 지도'에 위도와 경도를 대입하고, 해당 사용자 근처의 음식점을 검색하는 방식으로 구성되었습니다.
 
-이를 잘 활용하면 지도 뿐만 아니라 여러 방면에서 유용하게 사용될 수 있을 것으로 기대됩니다(마땅한 예시가 떠오르지 않습니다).
+이를 잘 활용하면 지도 뿐만 아니라 여러 방면에서 유용하게 사용될 수 있을 것으로 기대됩니다.
 
 ---
 
