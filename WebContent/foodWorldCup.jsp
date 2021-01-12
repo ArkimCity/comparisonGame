@@ -41,8 +41,6 @@
         }
     }
 
-    var jaeung = 1;
-    
     function choiceLeft() {
         if (tempfoods.length > 0) {
             let tempIndex = parseInt(Math.random() * (tempfoods.length));
@@ -58,11 +56,6 @@
             	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.jsp\">메인 화면으로 이동하기</a></center>";;
         }
     }
-    
-    //1. 월드컵 진행화면 - 진짜 월드컵 식으로 16강 처럼 - 2진수 비교하면서 자르겠습니다. 4 8 16
-    //2. 월드컵 생성화면 - 
-    //3. 월드컵 수정화면
-
 </script>
 <body style="background-color:#000000;">
     <div id="start" style="min-height: 100vh;">
