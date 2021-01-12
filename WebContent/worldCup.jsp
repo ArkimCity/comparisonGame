@@ -41,7 +41,6 @@
         	selectString += "<form action=\"#\">";
         	selectString += "<select id=\"tournament\" name=\"tournament\">";
         	for (number of possibleGameLength) {
-        		//document.getElementById("startReady").innerHTML += "<option value=\"" + number + "\"> " + number + "강 </option>";
         		selectString += "<option value=\"" + number + "\">";
         		selectString += number + "강";
         		selectString += "</option>";
