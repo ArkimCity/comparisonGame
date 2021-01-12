@@ -1,34 +1,23 @@
-# comparisonGame⚔️
- 기존의 [이상형 월드컵](https://www.piku.co.kr/)과 검색량 비교를 이용한 [검색량 비교 게임](https://higherlowerkorea.com/)에서 영감을 얻어 제작된 사이트입니다.
+# 왼쪽? 오른쪽?(comparisonGame)⚔️
+ 심심하거나 우울할 때 가끔씩 찾아와 주시면 '심신의 평화'를 얻게 되실겁니다...
 
 ## 📖Content
-* [1. 주제 선정(Motivation of selecting topic)](#🎶Motivation-of-selecting-topic)
-* [2. 사용된 기술 스택(Stack)](#🛠️Stack)
-* [3. 기능 구현(Implementation)](#🧩Implementation)
-* [4. 데이터 구조(Structure)](#📊Structure)
-* [5. 사용법(How to USE?)](#🔰How-to-use)
-* [6. 마무리(Conclusion)](#📝Conclusion)
-
-## 🎶Motivation of selecting topic
-주제 선정 과정 설명...
+* [1. 사용된 기술 스택(Stack)](#Stack)
+* [2. 데이터 구조(Structure)](#Structure)
+* [3. 사용법(How to USE?)](#How-to-use)
+* [4. 마무리(Conclusion)](#Conclusion)
 
 ## 🛠️Stack
 * Java
 * JavaScript
+* CSS
+* ESLint
 * OracleDB
-* ...
-
-## 🧩Implementation
-기능 구현 설명...
 
 ## 📊Structure
 <details>
 <summary>🗂️ ER Diagram</summary>
 <div markdown="1">
-
-* 테이블 설명 1
-
-* 테이블 설명 2
 
 ![comparisonGame](https://user-images.githubusercontent.com/17983434/104094446-548cf380-52d4-11eb-8e99-1bf450969c79.png)
 
@@ -40,56 +29,92 @@
 <div markdown="1">
 
 ```
-* 프로젝트명(comparisonGame)
+* 왼쪽? 오른쪽?(comparisonGame)
 |
 ├── comparison.controller
-|      └── WorldOfWordsController.java
+|      └── comparisonGameController.java
 ├── comparison.exception
 |      ├── MessageException.java
 |      └── NotExistException.java
 ├── comparison.model
+|      ├── CategoryDAO.java
+|      └── comparisonGameCRUDService.java
 |      ├── Crawler.java
+|      ├── GameDataDAO.java
+|      ├──JsoupCrawlNaverRestaurants.java
 |      ├── LoginService.java
-|      ├── UserCommunityDAO.java
-|      ├── UserWordDAO.java
-|      └── WorldOfWordsCRUDService.java
+|      ├── ScoreDAO.java
+|      ├── UsersDAO.java
 ├── comparison.model.dto
-|      ├── CommunityEntity.java
-|      ├── UserEntity.java
-|      └── UserWordEntity.java
+|      ├── CategoryEntity.java
+|      ├── GameDataEntity.java
+|      └── ScoreEntity.java
+|      ├── UsersEntity.java
 ├── comparison.model.util
 |      ├── DBUtil.java
 |      └── PublicCommon.java
 ├── sql
-|    ├── wowDDL.sql
-|    └── wowDML.sql
+|    ├── ComparisonDDL.sql
+|    └── ComparisonDML.sql
 ├── views
-|    ├── about.jsp
-|    ├── brainStorm.jsp
-|    ├── brainStormResult.jsp
-|    ├── CommunityList.jsp
-|    ├── login-page.css
-|    ├── login-page.jsp
+|    ├── foodWorldCup.css
+|    ├── foodWorldCup.jsp
+|    ├── foodWorldCupPrepare.jsp
+|    ├── LoginPage.jsp
 |    ├── NavigationBar.jsp
 |    ├── showError.jsp
+|    ├── SignUp.jsp
+|    ├── style.css
+|    ├── sweetalert.css
 |    ├── UserDetail.jsp
 |    ├── UserInsert.html
 |    ├── UserUpdate.jsp
-|    └── wordlist.jsp
-└── index.html
+|    └── worldCup.css
+|    └── worldCupForChecking.html
+|    └── worldCupList.css
+|    └── worldCupList.jsp
+├── package.json
+├── package-lock.json
+└── index.jsp
 ```
 
 </div>
 </details>
 
 ## 🔰How to USE?
-* 사용법 1
+* 모든 기능을 이용하려면 먼저 회원가입을 해야 한다.
 
-* 사용법 2
+    <img src="https://user-images.githubusercontent.com/17983434/104255812-40581a80-54bd-11eb-8600-2d1eb127ae12.PNG" width="50%" height="50%" title="1" alt="1">
 
-* 사용법 3
+* 회원가입을 마치고 로그인 화면에서 로그인 후 원하는 게임을 선택하면 된다. 필자는 먼저 '모든 월드컵'을 클릭해 보겠다.
 
-* ...
+    <img src="https://user-images.githubusercontent.com/17983434/104256588-d9d3fc00-54be-11eb-8ed9-31f5f46230cb.PNG" width="50%" height="50%" title="2" alt="2">
+
+* 다음 화면에서 원하는 게임을 선택하자. 필자는 '강아지 월드컵'을 클릭해 보겠다.
+
+    <img src="https://user-images.githubusercontent.com/17983434/104259110-181fea00-54c4-11eb-931e-80e10b05d07e.PNG" width="50%" height="50%" title="3" alt="3">
+
+* Enjoy~!
+
+    <img src="https://user-images.githubusercontent.com/17983434/104260418-d2b0ec00-54c6-11eb-8e5a-c7374134c7a0.gif" width="50%" height="50%" title="4" alt="4">
+
+* 이번에는 다른 게임('이따가 뭐 먹지')을 선택해 보겠다.
+
+    <img src="https://user-images.githubusercontent.com/17983434/104260717-6387c780-54c7-11eb-9a2e-406260658941.PNG" width="50%" height="50%" title="5" alt="5">
+
+* 점심, 저녁을 해결하기 위해서는 집밥이 최고이지만, 가끔은 외식을 하는 것도 나쁘지 않아 보인다. 필자는 '아구찜'이 먹고 싶어졌다.
+
+    * 구글 크롬 브라우저의 **"위치 액세스"를 허용**해 놓고 '아구찜'을 검색해 보자. 그러면, 필자가 위치한 동네 주변의 음식점들을 검색하게 된다.
+
+        <img src="https://user-images.githubusercontent.com/17983434/104261727-887d3a00-54c9-11eb-8f1e-9c2f38d85157.PNG" width="50%" height="50%" title="6_1" alt="6_1">
+
+    * 만약 **"위치 액세스"를 허용하지 않은 상태**에서 검색을 진행할 경우, 전국의 음식점들을 검색하게 된다.
+
+        <img src="https://user-images.githubusercontent.com/17983434/104261922-deea7880-54c9-11eb-91d9-ad3c18193347.PNG" width="50%" height="50%" title="6_2" alt="6_2">
+
+    * Enjoy~!
+
+        <img src="https://user-images.githubusercontent.com/17983434/104262457-fc6c1200-54ca-11eb-99cc-7a2bd1aaa0f2.gif" width="50%" height="50%" title="6_3" alt="6_3">
 
 ## 📝Conclusion
-클로즈 멘트 설명...
+The END...
