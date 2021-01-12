@@ -23,6 +23,15 @@ body, html {
 	background-size: cover;
 }
 </style>
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align" >
+  <a href="${pageContext.request.contextPath}/index.jsp" class="w3-bar-item w3-button w3-hide-small" style="padding:15px 30px"><i class="fa fa-trophy" style="font-size:15px"></i>  왼쪽? 오른쪽?</a>
+  <a href="comparisonGame?command=getWorldCupList" class="w3-bar-item w3-button w3-hide-small" title="공개된 월드컵 리스트를 확인하려면 여기로!" style="padding:15px 30px">모든 월드컵</a>
+  <a href="foodWorldCupPrepare.jsp" class="w3-bar-item w3-button w3-teal" title="점심, 저녁 메뉴 결정은 여기로!" style="padding:15px 30px">이따가 뭐 먹지?</a>
+  <a href="LoginPage.jsp" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" style="padding:15px 30px" title="Login" ><i class="fa fa-sign-in" style="font-size:15px"></i> Login</a>
+  </div>
+ </div>
 <head>
 <script>
 	function getLocation() {
@@ -58,9 +67,6 @@ body, html {
 
 <!-- Sidebar (hidden by default) -->
 </head>
-<div style="position: relative; z-index: 2;">
-	<jsp:include page="NavigationBar.jsp"></jsp:include>
-</div>
 <body>
 	<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
 		<div class="w3-display-middle">
