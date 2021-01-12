@@ -69,19 +69,6 @@ body, h1, h2, h3, h4, h5, h6 {
 		</div>
 		<!-- 강아지 월드컵 | 끝 -->
 	</c:forEach>
-	<!--  라면 월드컵 | 시작 -->
-	<!--  라면 월드컵 | 끝 -->
-
-	<%-- <div class="child-page-listing w3-animate-opacity" style="margin-top: 80px">
-		<div class="grid-container">
-			<c:forEach items="${requestScope.worldCupList}" var="worldCup">
-				<article class="location-listing" onclick="location.href='comparisonGame?command=getWorldCup&category=${worldCup.title}'">
-					<a class="location-title" href="#" > ${worldCup.title} </a>
-					<div class="location-image">${worldCup.source}</div>
-				</article>
-			</c:forEach>
-		</div>
-	</div> --%>
 
 	<!-- Navbar -->
 	<div class="w3-top">

@@ -1,0 +1,27 @@
+{
+  "name": "comparisonGame",
+  "version": "1.0.0",
+  "description": "기존의 [이상형 월드컵](https://www.piku.co.kr/)과 검색량 비교를 이용한 [검색량 비교 게임](https://higherlowerkorea.com/)에서 영감을 얻어 제작된 사이트입니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArkimCity/comparisonGame.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArkimCity/comparisonGame/issues"
+  },
+  "homepage": "https://github.com/ArkimCity/comparisonGame#readme",
+  "dependencies": {
+    "eslint-plugin-html": "^6.1.1",
+    "eslint-plugin-jsp": "0.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.17.0"
+  }
+}

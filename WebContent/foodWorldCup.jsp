@@ -40,6 +40,8 @@
             	+ "<br><br><br><br> <a href=\"${pageContext.request.contextPath}/index.jsp\">메인 화면으로 이동하기</a></center>";
         }
     }
+
+    var jaeung = 1;
     
     function choiceLeft() {
         if (tempfoods.length > 0) {

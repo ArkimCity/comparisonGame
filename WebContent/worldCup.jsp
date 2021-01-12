@@ -44,6 +44,13 @@
         choiceRight();
         document.getElementById("comparison").style.display = "";
     }
+    
+    function startChoice() {
+        document.getElementById("start").style.display = "none";
+        tempgamedatas = gamedatas.map(v => v);
+        loadNext();
+        document.getElementById("comparison").style.display = "";
+    }
 
     function roundChecker(direction) {
         let detector = true;
@@ -73,13 +80,6 @@
         document.getElementById("titleRight").innerHTML = temp2.title;
         tempgamedatas.splice(tempIndex2, 1);
     }
- 
-    function startChoice() {
-        document.getElementById("start").style.display = "none";
-        tempgamedatas = gamedatas.map(v => v);
-        loadNext();
-        document.getElementById("comparison").style.display = "";
-    }
 
     function choiceRight() {
         nextRound.push(gamedatas.find(function(item) {return item.title === document.getElementById("titleRight").innerHTML}));
@@ -88,6 +88,8 @@
         }
     }
         
+    var jaeung = 1;
+
     function choiceLeft() {
         nextRound.push(gamedatas.find(function(item) {return item.title === document.getElementById("titleLeft").innerHTML}));
         if (roundChecker("Left")) {
